@@ -1,0 +1,17 @@
+1. Записи о сотрудниках с уровнем оклада >= 1000.
+SELECT * FROM Employees WHERE Salary>=1000;
+
+2. Список всех городов, в которых работают сотрудники компании.
+SELECT DISTINCT City FROM Employees;
+или же
+SELECT City FROM Employees GROUP BY City;
+
+3. Список сотрудников, работающих в Москве.
+SELECT COUNT(City) FROM Employees WHERE City='Moscow';
+
+4. Суммарные выплаты по заработной плате для каждого из городов.
+SELECT City, SUM(Salary) FROM Employees GROUP BY City;
+
+5. Список сотрудников, работающих не в одиночку
+SELECT * FROM Employees WHERE City IN
+(SELECT City FROM Employees GROUP BY City HAVING COUNT(*)>1);
